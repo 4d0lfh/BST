@@ -1,0 +1,486 @@
+
+/* =================================
+   1. GENERAL SETTINGS
+================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --ink: #17233b;
+    --muted: #68758c;
+    --line: #e4e9f2;
+    --blue: #315fe8;
+    --background: #f4f6fb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--ink);
+    font-family: 'Manrope', Arial, sans-serif;
+}
+
+
+/* =================================
+   2. MAIN CONTAINER
+================================= */
+
+.app {
+    width: min(1160px, calc(100% - 36px));
+    margin: 38px auto 26px;
+}
+
+.hero {
+    margin-bottom: 24px;
+}
+
+.eyebrow {
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+    margin: 0 0 7px;
+}
+
+h1 {
+    font-size: clamp(29px, 4vw, 43px);
+    margin: 0;
+    letter-spacing: -1.4px;
+}
+
+h1 span {
+    color: var(--blue);
+}
+
+.subtitle {
+    color: var(--muted);
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+
+/* =================================
+   3. PANELS
+================================= */
+
+.panel {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 17px;
+    padding: 23px;
+    margin: 17px 0;
+    box-shadow: 0 8px 26px rgba(26, 44, 80, 0.04);
+}
+
+h2 {
+    margin: 0 0 14px;
+    font-size: 20px;
+}
+
+
+/* =================================
+   4. INPUT CONTROLS
+================================= */
+
+.controls {
+    display: grid;
+    gap: 17px;
+}
+
+.controls label {
+    display: block;
+    font-weight: 800;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.input-row {
+    display: flex;
+    gap: 9px;
+    flex: 1;
+}
+
+input {
+    min-width: 0;
+    flex: 1;
+    padding: 12px 14px;
+    border: 1px solid #cfd7e6;
+    border-radius: 9px;
+    outline: none;
+    font: 500 14px 'DM Mono', monospace;
+    color: var(--ink);
+    background: white;
+}
+
+input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(49, 95, 232, 0.11);
+}
+
+.hint {
+    color: var(--muted);
+    font-size: 11px;
+    margin: 7px 0 0;
+}
+
+
+/* =================================
+   5. BUTTONS
+================================= */
+
+button {
+    border: 0;
+    border-radius: 9px;
+    padding: 0 17px;
+    min-height: 43px;
+    background: var(--blue);
+    color: white;
+    font: 800 12px 'Manrope', sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s;
+}
+
+button:hover {
+    filter: brightness(0.9);
+    transform: translateY(-1px);
+}
+
+.green {
+    background: #16866f;
+}
+
+.red {
+    background: #c74646;
+}
+
+.light {
+    background: #edf1f8;
+    color: #34435e;
+}
+
+
+/* =================================
+   6. ACTION ROW
+================================= */
+
+.action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.action-row .input-row {
+    flex: 1 1 220px;
+}
+
+
+/* =================================
+   7. MESSAGE
+================================= */
+
+.message {
+    font-size: 12px;
+    color: #14866d;
+}
+
+.message:not(:empty) {
+    padding: 9px 11px;
+    border-radius: 8px;
+    background: #eaf7f2;
+}
+
+.message.error {
+    color: #a52c2c;
+    background: #fff0f0;
+}
+
+
+/* =================================
+   8. SECTION HEADING
+================================= */
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.heading small {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+
+/* =================================
+   9. TREE LEGEND
+================================= */
+
+.legend {
+    display: flex;
+    gap: 15px;
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 12px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.root-dot {
+    background: #315fe8;
+}
+
+.normal-dot {
+    background: #35a486;
+}
+
+.found-dot {
+    background: #e49a30;
+}
+
+
+/* =================================
+   10. TREE CANVAS
+================================= */
+
+.tree {
+    min-height: 230px;
+    overflow: auto;
+    border: 1px dashed #dbe2ef;
+    border-radius: 12px;
+    background: #fbfcff;
+    padding: 18px;
+}
+
+.empty {
+    min-height: 190px;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.tree-svg {
+    display: block;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+
+/* =================================
+   11. TREE CONNECTIONS
+================================= */
+
+.edge {
+    stroke: #536783;
+    stroke-width: 1.7;
+    fill: none;
+    stroke-linecap: round;
+}
+
+
+/* =================================
+   12. TREE NODES
+================================= */
+
+.node {
+    cursor: pointer;
+    outline: none;
+}
+
+.node circle {
+    stroke-width: 2;
+    transition: 0.2s;
+}
+
+/* Root node */
+
+.node.root circle {
+    fill: #eaf0ff;
+    stroke: #4770e9;
+}
+
+/* Normal nodes */
+
+.node.normal circle {
+    fill: #e8f7f2;
+    stroke: #37a487;
+}
+
+/* Search result */
+
+.node.found circle {
+    fill: #fff0d9;
+    stroke: #df922c;
+    stroke-width: 3.5;
+}
+
+/* Selected node */
+
+.node.selected circle {
+    stroke: #e28a25;
+    stroke-width: 4;
+}
+
+/* Node labels */
+
+.node text {
+    font: 700 13px 'DM Mono', monospace;
+    fill: #1c2b46;
+    text-anchor: middle;
+    dominant-baseline: central;
+    pointer-events: none;
+}
+
+
+/* =================================
+   13. TRAVERSAL RESULTS
+================================= */
+
+.three {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 11px;
+}
+
+.three article,
+.stats article,
+.two article {
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    padding: 15px;
+    background: #fcfdff;
+    min-width: 0;
+}
+
+.three h3,
+.two h3 {
+    font-size: 13px;
+    margin: 0 0 9px;
+}
+
+.three p {
+    font: 500 13px/1.8 'DM Mono', monospace;
+    color: #244bc1;
+    overflow-wrap: anywhere;
+}
+
+.three small,
+.two small {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+
+/* =================================
+   14. BST PROPERTIES
+================================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.stats span {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 7px;
+}
+
+.stats strong {
+    font: 700 19px 'DM Mono', monospace;
+    overflow-wrap: anywhere;
+}
+
+
+/* =================================
+   15. NODE DETAILS
+================================= */
+
+.two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 11px;
+    margin-top: 11px;
+}
+
+.two article {
+    font: 500 12px/1.8 'DM Mono', monospace;
+    overflow-wrap: anywhere;
+}
+
+
+/* =================================
+   16. BST RULES
+================================= */
+
+.rules ul {
+    font-size: 12px;
+    line-height: 1.9;
+    color: #46536a;
+    padding-left: 20px;
+}
+
+
+/* =================================
+   17. FOOTER
+================================= */
+
+footer {
+    text-align: center;
+    color: #8a95a8;
+    font-size: 11px;
+    padding: 10px 0 20px;
+}
+
+
+/* =================================
+   18. RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 720px) {
+
+    .app {
+        width: calc(100% - 22px);
+        margin-top: 23px;
+    }
+
+    .panel {
+        padding: 16px;
+    }
+
+    .input-row {
+        flex-direction: column;
+    }
+
+    .input-row button {
+        min-height: 43px;
+    }
+
+    .three,
+    .two {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .heading small {
+        display: none;
+    }
+}

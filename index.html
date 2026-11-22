@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Binary Search Tree Visualizer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <!-- HEADER -->
+        <header class="hero">
+
+            <p class="eyebrow">
+                DATA STRUCTURES AND ALGORITHMS
+            </p>
+
+            <h1>
+                Binary Search Tree
+                <span>(BST)</span>
+            </h1>
+
+            <p class="subtitle">
+                Insert, search, and delete values while
+                viewing your Binary Search Tree.
+            </p>
+
+        </header>
+
+
+        <!-- BST CONTROLS -->
+        <section class="panel controls">
+
+            <!-- INSERT NODE -->
+            <div class="control-block">
+
+                <label for="valueInput">
+                    Insert a Value
+                </label>
+
+                <div class="input-row">
+
+                    <input
+                        type="number"
+                        id="valueInput"
+                        step="any"
+                        placeholder="Enter a number"
+                    >
+
+                    <button id="insertBtn">
+                        Insert Node
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUILD TREE -->
+            <div class="control-block">
+
+                <label for="sequenceInput">
+                    Build Tree from a Sequence
+                </label>
+
+                <div class="input-row">
+
+                    <input
+                        type="text"
+                        id="sequenceInput"
+                        value="23 10 45 6 60 33 15 8 50"
+                        placeholder="Example: 23 10 45 6 60"
+                    >
+
+                    <button id="buildBtn">
+                        Build Tree
+                    </button>
+
+                </div>
+
+                <p class="hint">
+                    Separate numbers using spaces or commas.
+                </p>
+
+            </div>
+
+
+            <!-- SEARCH AND DELETE -->
+            <div class="action-row">
+
+                <div class="input-row">
+
+                    <input
+                        type="number"
+                        id="searchInput"
+                        step="any"
+                        placeholder="Value to search"
+                    >
+
+                    <button
+                        id="searchBtn"
+                        class="green"
+                    >
+                        Search
+                    </button>
+
+                </div>
+
+
+                <div class="input-row">
+
+                    <input
+                        type="number"
+                        id="deleteInput"
+                        step="any"
+                        placeholder="Value to delete"
+                    >
+
+                    <button
+                        id="deleteBtn"
+                        class="red"
+                    >
+                        Delete
+                    </button>
+
+                </div>
+
+
+                <button
+                    id="clearBtn"
+                    class="light"
+                >
+                    Clear Tree
+                </button>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+            <div
+                id="message"
+                class="message"
+                aria-live="polite"
+            ></div>
+
+        </section>
+
+
+        <!-- TREE VISUALIZATION -->
+        <section class="panel">
+
+            <div class="heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        VISUALIZATION
+                    </p>
+
+                    <h2>
+                        Binary Search Tree
+                    </h2>
+
+                </div>
+
+                <small>
+                    Left child &lt; parent ·
+                    Right child ≥ parent
+                </small>
+
+            </div>
+
+
+            <!-- LEGEND -->
+            <div class="legend">
+
+                <span>
+                    <i class="dot root-dot"></i>
+                    Root
+                </span>
+
+                <span>
+                    <i class="dot normal-dot"></i>
+                    Node
+                </span>
+
+                <span>
+                    <i class="dot found-dot"></i>
+                    Search Result
+                </span>
+
+            </div>
+
+
+            <!-- TREE CANVAS -->
+            <div
+                id="treeCanvas"
+                class="tree"
+            >
+
+                <div class="empty">
+                    Build a tree or insert a number
+                    to get started.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TREE TRAVERSALS -->
+        <section class="panel">
+
+            <p class="eyebrow">
+                TREE TRAVERSALS
+            </p>
+
+            <h2>
+                Traversal Results
+            </h2>
+
+
+            <div class="three">
+
+                <!-- INORDER -->
+                <article>
+
+                    <h3>
+                        In-order (LNR)
+                    </h3>
+
+                    <p id="inorderResult">
+                        —
+                    </p>
+
+                    <small>
+                        Left → Node → Right.
+                        Produces sorted output.
+                    </small>
+
+                </article>
+
+
+                <!-- PREORDER -->
+                <article>
+
+                    <h3>
+                        Pre-order (NLR)
+                    </h3>
+
+                    <p id="preorderResult">
+                        —
+                    </p>
+
+                    <small>
+                        Node → Left → Right.
+                    </small>
+
+                </article>
+
+
+                <!-- POSTORDER -->
+                <article>
+
+                    <h3>
+                        Post-order (LRN)
+                    </h3>
+
+                    <p id="postorderResult">
+                        —
+                    </p>
+
+                    <small>
+                        Left → Right → Node.
+                    </small>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- BST PROPERTIES -->
+        <section class="panel">
+
+            <p class="eyebrow">
+                TREE ANALYSIS
+            </p>
+
+            <h2>
+                BST Properties
+            </h2>
+
+
+            <div class="stats">
+
+                <article>
+
+                    <span>
+                        Root Node
+                    </span>
+
+                    <strong id="rootResult">
+                        —
+                    </strong>
+
+                </article>
+
+
+                <article>
+
+                    <span>
+                        Smallest Value
+                    </span>
+
+                    <strong id="minResult">
+                        —
+                    </strong>
+
+                </article>
+
+
+                <article>
+
+                    <span>
+                        Largest Value
+                    </span>
+
+                    <strong id="maxResult">
+                        —
+                    </strong>
+
+                </article>
+
+
+                <article>
+
+                    <span>
+                        Height (Edges)
+                    </span>
+
+                    <strong id="heightResult">
+                        —
+                    </strong>
+
+                </article>
+
+
+                <article>
+
+                    <span>
+                        Total Nodes
+                    </span>
+
+                    <strong id="countResult">
+                        0
+                    </strong>
+
+                </article>
+
+
+                <article>
+
+                    <span>
+                        Leaf Nodes
+                    </span>
+
+                    <strong id="leafCountResult">
+                        0
+                    </strong>
+
+                </article>
+
+            </div>
+
+
+            <!-- NODE DETAILS -->
+            <div class="two">
+
+                <article>
+
+                    <h3>
+                        Node Categories
+                    </h3>
+
+                    <div id="categoriesResult">
+                        —
+                    </div>
+
+                </article>
+
+
+                <article>
+
+                    <h3>
+                        Selected Node Details
+                    </h3>
+
+                    <small>
+                        Click a node in the tree to inspect it.
+                    </small>
+
+                    <div id="nodeDetails">
+                        No node selected.
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- BST RULES -->
+        <section class="panel rules">
+
+            <h2>
+                Binary Search Tree Rules
+            </h2>
+
+            <ul>
+
+                <li>
+                    Values smaller than a node go to its
+                    left subtree.
+                </li>
+
+                <li>
+                    Values greater than or equal to a node
+                    go to its right subtree.
+                </li>
+
+                <li>
+                    Each subtree must also follow the
+                    BST rules.
+                </li>
+
+                <li>
+                    Duplicate values are allowed and
+                    go to the right.
+                </li>
+
+                <li>
+                    In-order traversal displays values
+                    in ascending order.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            Binary Search Tree Visualizer
+
+            <br>
+
+            HTML · CSS · JavaScript
+
+        </footer>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
